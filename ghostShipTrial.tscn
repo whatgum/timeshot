@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://trial.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://ghostShipTrial.gd" type="Script" id=3]
+
+[node name="Node2D" type="PathFollow2D"]
+z_index = -2
+rotate = false
+loop = false
+script = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+show_behind_parent = true
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="reforwardAnimation" from="." to="AnimationPlayer" method="_on_Node2D_reforwardAnimation"]
+[connection signal="rewindAnimation" from="." to="AnimationPlayer" method="_on_Node2D_rewindAnimation"]
+[connection signal="seekThenStop" from="." to="AnimationPlayer" method="seekThenStop"]
+[connection signal="startAnimation" from="." to="AnimationPlayer" method="_on_Node2D_animationPlayer"]
+[connection signal="startPlaying" from="." to="AnimationPlayer" method="restartPlay"]
